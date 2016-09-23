@@ -1,0 +1,258 @@
+
+<html slick-uniqueid="3">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+
+<title>ENGG5104 Project 4: Pedestrian Detection</title>
+
+
+</head>
+
+<body bgcolor="#FFFFFF">
+
+
+
+<h1 align="center"><font face="Arial"><strong>ENGG5104 Project 4: Pedestrian Detection</strong></font></h1>
+
+
+
+
+
+<h2 align="left"><font face="Arial"><u>Goal</u></font></h2>
+
+<li>Finish the histogram of gradient (HOG) descriptor algorithms and use linear SVM to train the pedestrian detector.</li>
+<li>Implement the pedestrian detection scheme by the HOG pedestrian detector.</li>
+
+
+<h2 align="left"><font face="Arial"><u>Basic Algorithm</u></font></h2>
+
+<h3>Histogram of Gradient</h3>
+<h4>Laplacian Gradient</h4>
+Laplacian gradient of every pixel is computed following with its magnitude and angle as follow:
+<div align="left">
+<a href="./LG.jpg" ><img  src="./LG.jpg" alt="LG"  /></a>
+</div>
+<h4>Constructing HOG Descriptor</h4>
+The image is segmented as 8*8 cells and those cells are grouped into blocks. The neighborhood blocks always overlap with each other by 50%. THe relation between cells and blocks are as follow:
+<div align="left">
+<a href="./CB.jpg" ><img  src="./CB.jpg" alt="CB"  /></a>
+</div>
+For each cell, we accumulate the 64 magnitudes into a 9 bin histogram according to the corresponding angles which ranges from -pi to pi, i.e. the interval is 40 degrees.
+<div align="left">
+<a href="./H.jpg" ><img  src="./H.jpg" alt="H"  /></a>
+</div>
+For a 2*2 block, it has 4 cell with HOGs. Those 4 HOGs are then concatenated into a vector v. We normalize v by tis L2_nor, i.e.<img  src="./norm.jpg" alt="norm"  width="150" height="37" /> . The normalized vector v is the HOG descriptor of a block. All blocks of a image form the HOG descriptor of this image.
+
+<h3>Pedestrian Detection Framework</h3>
+<h4>Train Linear Detector</h4>
+The positive samples containing one pedestrian and the negative samples contain no human are resized to a fixed size. Then we extract HOG descriptor for each training sample and feed into two-class linear SVM to train the human detector. 
+
+
+
+<h4>Sliding Window Strategy</h4>
+
+
+<h4>Multiple Scale Manner</h4>
+
+This is a polynomial root finding problem which can solve using Newton’s method iteratively. The iterative objective function is then changed to:
+<div align="left">
+<a href="./f2.jpg" ><img  src="./f2.jpg" alt="f2"/></a>
+</div>
+Let
+<div align="left">
+<a href="./f3.jpg" ><img  src="./f3.jpg" alt="f3"/></a>
+</div>
+Thus according to Taylor expansion, the objective function is changed to:
+<div align="left">
+<a href="./f4.jpg" ><img  src="./f4.jpg" alt="f4"/></a>
+</div>
+
+<h3>Optimization</h3>
+Define Laplacian filter as:
+<div align="left">
+<a href="./f5.jpg" ><img  src="./f5.jpg" alt="f5"/></a>
+</div>
+Then, optimization of objective function can be solved by the following linear system 
+<div align="left">
+<a href="./f6.jpg" ><img  src="./f6.jpg" alt="f6"/></a>
+</div>
+
+<h3>A coarse-to-fine Schema</h3>
+In this framework, a coarse-to-fine refining scheme is built on Gaussian pyramids constructed on input images. Each two successive levels are with downsampling rate 0.8 (can be adjusted).
+
+<h3>Evaluation</h3>
+The result is evaluated by average precision (AP) and the curve of precision-recall.
+
+
+Also the result can be visually estimated from visualization of results.
+
+
+
+
+<h2 align="left"><font face="Arial"><u>Bonus</u></font></h2>
+
+Three different normalization schemes described in [1] are performed:
+<div align="left">
+	<img border="0" hspace="1" vspace="1" src="./bonus.jpg" width="600" height="150">
+</div>
+
+The analysis of different nomalization schemes is in next section.
+
+<h2 align="left"><font face="Arial"><u>Experiment Results and Analysis</u></font></h2>
+
+
+
+
+<h3>Scales Analysis</h3>
+
+Experiments results shows that more different scales during detection can reach higher performance. 
+ 
+
+<h4>Result of 1 different scales</h4>
+const float scales[] = {0.21}; // Multiple scales<br>
+const float threshold[] = {1.4}; // The threshold for each scales
+<div align="left">
+<a href="./1.jpg" ><img  src="./1.jpg" alt="1"/></a>
+</div>
+
+<h4>Result of 2 different scales</h4>
+const float scales[] = {0.21, 0.3}; // Multiple scales<br>
+const float threshold[] = {1.4, 2.5}; // The threshold for each scales
+<div align="left">
+<a href="./2.jpg" ><img  src="./2.jpg" alt="2"/></a>
+</div>
+
+
+<h4>Result of 3 different scales</h4>
+const float scales[] = {0.21, 0.27, 0.3}; // Multiple scales<br>
+const float threshold[] = {1.5, 2.0, 2.5}; // The threshold for each scales
+<div align="left">
+<a href="./3.jpg" ><img  src="./3.jpg" alt="3"/></a>
+</div>
+
+<h4>Result of 5 different scales</h4>
+const float scales[] = {0.18, 0.21, 0.24, 0.27, 0.3}; // Multiple scales<br>
+const float threshold[] = {1.0, 1.5, 1.7, 2.0, 2.5}; // The threshold for each scales
+<div align="left">
+<a href="./5.jpg" ><img  src="./5.jpg" alt="5"/></a>
+</div>
+
+<h4>Result of 7 different scales</h4>
+const float scales[] = {0.18, 0.2, 0.21, 0.24, 0.27, 0.29, 0.3}; // Multiple scales<br>
+const float threshold[] = {1.0, 1.3, 1.4, 1.7, 2.0, 2.3, 2.5}; // The threshold for each scales
+<div align="left">
+<a href="./7.jpg" ><img  src="./7.jpg" alt="7"/></a>
+</div>
+
+<h4>Result of 10 different scales</h4>
+const float scales[] = {0.18, 0.2, 0.21, 0.23, 0.24, 0.25, 0.27, 0.28, 0.29, 0.3}; // Multiple scales<br>
+const float threshold[] = {1.0, 1.3, 1.4, 1.6, 1.7, 1.8, 2.0, 2.1, 2.3, 2.5}; // The threshold for each scales
+<div align="left">
+<a href="./10.jpg" ><img  src="./10.jpg" alt="10"/></a>
+</div>
+
+<h4>Result of 13 different scales</h4>
+const float scales[] = {0.18, 0.19, 0.2, 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3}; // Multiple scales<br>
+const float threshold[] = {1.0, 1.1, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.3, 2.5}; // The threshold for each scales
+<div align="left">
+<a href="./13.jpg" ><img  src="./13.jpg" alt="13"/></a>
+</div>
+
+<h4>Comparison</h4>
+
+AP of different scales are list as follow:
+<div align="left">
+<a href="./NOS.jpg" ><img  src="./NOS.jpg" alt="NOS"/></a>
+</div>
+<div align="left">
+<a href="./scale.jpg" ><img  src="./scale.jpg" alt="scale"/></a>
+</div>
+
+We can find that with more scales, the performance is better for almost all the cases. That's because there are many people with different sizes. If there are no enough scales, some of them might be not detected.
+
+For the rest of the experiments, the scales are fixed to  {0.18, 0.2, 0.21, 0.23, 0.24, 0.25, 0.27, 0.28, 0.29, 0.3}.
+
+<h3>Threshold Analysis</h3>
+
+Noted that changing thresholds will only affect the final detection result but not the curve of precision-recall. So some detection results are shown to compare different thresholds.<br>
+To simplify the analysis, the single scale "0.21" is fixed with different thresholds as examples.<br>
+
+<h4>Threshold = 0</h4>
+
+Most of the pedestrians are detected but there are also many other things are detected as pedestrian.<br> For example:
+<div align="left">
+<a href="./ex1.jpg" ><img  src="./ex1.jpg" alt="ex1"/></a>
+</div>
+
+<h4>Threshold = 1.4</h4>
+
+Some pedestrians are missed.<br> For example:
+<div align="left">
+<a href="./ex2.jpg" ><img  src="./ex2.jpg" alt="ex2"/></a>
+</div>
+
+Some other things are detected as pedestrian.<br> For example:
+<div align="left">
+<a href="./ex3.jpg" ><img  src="./ex3.jpg" alt="ex3"/></a>
+</div>
+
+<h4>Threshold = 2.0</h4>
+
+Many pedestrians are not detected, but things detected as pedestrian is less.<br>
+So the threshold is a trade-off between precision and recall. 
+
+
+<h3> Different Normalization Schemes</h3>
+Parameters: <br>
+const float scales[] = {0.18, 0.2, 0.21, 0.23, 0.24, 0.25, 0.27, 0.28, 0.29, 0.3}; // Multiple scales<br>
+const float threshold[] = {1.0, 1.3, 1.4, 1.6, 1.7, 1.8, 2.0, 2.1, 2.3, 2.5}; // The threshold for each scales
+<h4>L2_norm</h4>
+<div align="left">
+<a href="./10.jpg" ><img  src="./10.jpg" alt="10"/></a>
+</div>
+
+<h4>L1_norm</h4>
+<div align="left">
+<a href="./10_1.jpg" ><img  src="./10_1.jpg" alt="10_1"/></a>
+</div>
+
+<h4>L1_Sqrt</h4>
+<div align="left">
+<a href="./10_2.jpg" ><img  src="./10_2.jpg" alt="10_2"/></a>
+</div>
+
+<h4>L2_Hys</h4>
+<div align="left">
+<a href="./10_3.jpg" ><img  src="./10_3.jpg" alt="10_3"/></a>
+</div>
+
+<h4>No Normalization</h4>
+<div align="left">
+<a href="./10_4.jpg" ><img  src="./10_4.jpg" alt="10_4"/></a>
+</div>
+
+The four normalization performance are similar. What's more, they are all much better than that with no normalization.
+
+<h3> Best Performance</h3>
+
+Choose L1_Sqrt to normalize HOG descriptor and set parameters as follow:<br>
+const float scales[] = {0.18, 0.2, 0.21, 0.23, 0.24, 0.25, 0.27, 0.28, 0.29, 0.3}; // Multiple scales<br>
+const float threshold[] = {1.0, 1.3, 1.4, 1.6, 1.7, 1.8, 2.0, 2.1, 2.3, 2.5}; // The threshold for each scales<br>
+<div align="left">
+<a href="./10_2.jpg" ><img  src="./10_2.jpg" alt="10_2"/></a>
+</div>
+<p><font size="5">AP = 0.613805</>
+
+
+<h2 align="left"><font face="Arial"><u>References</u></font></h2>
+<p><font face="Times New Roman">[1] <font size="4">Dalal N, Triggs B.  <i>Histograms of oriented gradients for human detection</i> CVPR 2005</font></font></p>
+
+</body>
+
+
+</html>
