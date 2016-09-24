@@ -1,0 +1,61 @@
+﻿  Detector.cpp
+c:\users\joy\documents\visual studio 2015\projects\engg5104-asgn4-pedestrian_detection\code\pedestrian_detection\library\opencv_2_49\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+Detector.cpp(23): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+Detector.cpp(34): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+Detector.cpp(35): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+Detector.cpp(117): warning C4101: “xi2”: 未引用的局部变量
+Detector.cpp(117): warning C4101: “yi1”: 未引用的局部变量
+Detector.cpp(117): warning C4101: “yi2”: 未引用的局部变量
+Detector.cpp(117): warning C4101: “xi1”: 未引用的局部变量
+Detector.cpp(190): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+Detector.cpp(191): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  DetEvaluator.cpp
+c:\users\joy\documents\visual studio 2015\projects\engg5104-asgn4-pedestrian_detection\code\pedestrian_detection\library\opencv_2_49\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+DetEvaluator.cpp(26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+DetEvaluator.cpp(45): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+DetEvaluator.cpp(50): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+DetEvaluator.cpp(52): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+DetEvaluator.cpp(62): warning C4018: “<”: 有符号/无符号不匹配
+DetEvaluator.cpp(123): warning C4018: “<”: 有符号/无符号不匹配
+  HOGExtractor.cpp
+HOGExtractor.cpp(64): warning C4305: “初始化”: 从“double”到“float”截断
+HOGExtractor.cpp(121): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+HOGExtractor.cpp(178): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  main.cpp
+c:\users\joy\documents\visual studio 2015\projects\engg5104-asgn4-pedestrian_detection\code\pedestrian_detection\library\opencv_2_49\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+main.cpp(28): warning C4838: 从“double”转换到“const float”需要收缩转换
+main.cpp(28): warning C4305: “初始化”: 从“double”到“const float”截断
+main.cpp(29): warning C4838: 从“double”转换到“const float”需要收缩转换
+main.cpp(29): warning C4305: “初始化”: 从“double”到“const float”截断
+main.cpp(31): warning C4305: “初始化”: 从“double”到“float”截断
+main.cpp(40): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+main.cpp(53): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+main.cpp(63): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+main.cpp(88): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+main.cpp(114): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+main.cpp(144): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+main.cpp(157): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+  PostProcessor.cpp
+c:\users\joy\documents\visual studio 2015\projects\engg5104-asgn4-pedestrian_detection\code\pedestrian_detection\library\opencv_2_49\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+PostProcessor.cpp(71): warning C4018: “<”: 有符号/无符号不匹配
+PostProcessor.cpp(73): warning C4018: “<”: 有符号/无符号不匹配
+PostProcessor.cpp(88): warning C4018: “<”: 有符号/无符号不匹配
+  正在生成代码
+  All 365 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  pedestrian_detection.vcxproj -> C:\Users\JOY\Documents\Visual Studio 2015\Projects\ENGG5104-Asgn4-Pedestrian_Detection\code\pedestrian_detection\Release\pedestrian_detection.exe
+  0 File(s) copied
+  0 File(s) copied
+  0 File(s) copied
+  0 File(s) copied
